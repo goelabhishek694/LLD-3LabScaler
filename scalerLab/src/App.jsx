@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+// import './App.css'
 import UseState from './components/UseState'
 import SimpleForm from './components/SimpleForm'
 import AdvancedForm from './components/AdvancedFrom'
@@ -10,6 +10,7 @@ import TemperatureInput from './components/TemperatureInput'
 import TemperatureDisplay from './components/TemperatureDisplay'
 import UseEffectBasic from './components/UseEffectbasic'
 import FetchDataComponent from './components/FetchDataComponent'
+import Routing from './components/Routing'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,7 +29,8 @@ function App() {
     {/* <TemperatureInput temperature = {temperature} tempChange ={handleTemperatureChange}/> */}
     {/* <TemperatureDisplay temperature = {temperature} /> */}
     {/* <UseEffectBasic/> */}
-    <FetchDataComponent/>
+    {/* <FetchDataComponent/> */}
+    <Routing/>
     </>
   )
 }
