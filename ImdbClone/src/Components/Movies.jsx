@@ -46,14 +46,14 @@ function Movies() {
       }
     };
     
-    fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
+    fetch(`https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=${pageNo}`, options)
       .then(res => res.json())
       .then(res => {
         setMovies(res.results)
         console.log(res)
   })
       .catch(err => console.error(err));
-  },[])
+  },[pageNo])
 
   return (
     <div>
