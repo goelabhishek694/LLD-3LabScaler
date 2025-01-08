@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 function Movies() {
   // setup basic pagination
   const [pageNo, setPageNo] = useState(1);
@@ -38,6 +37,24 @@ function Movies() {
     },
   ]);
 
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`
+      }
+    };
+    
+    fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
+      .then(res => res.json())
+      .then(res => {
+        setMovies(res.results)
+        console.log(res)
+  })
+      .catch(err => console.error(err));
+  },[])
+
   return (
     <div>
       <div className="text-2xl font-bold text-center m-5">
@@ -51,7 +68,8 @@ function Movies() {
             <div
               key={idx}
               className="h-[40vh] w-[200px] bg-center bg-cover rounded-xl hover:scale-110 duration-300 hover:cursor-pointer flex flex-col justify-between item-end"
-              style={{ backgroundImage: `url(${movieObj.url})` }}
+              style={{ backgroundImage: `url('https://image.tmdb.org/t/p/w500/${movieObj.backdrop_path
+              })` }}
             >
               <div className="text-white w-full text-center text-xl bg-gray-900/70 p-2 rounded-lg">{movieObj.title}</div>
             </div>
