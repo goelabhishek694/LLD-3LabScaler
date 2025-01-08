@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MovieCard from "./Moviecard";
 function Movies() {
   // setup basic pagination
   const [pageNo, setPageNo] = useState(1);
@@ -65,14 +66,7 @@ function Movies() {
       <div className="flex justify-evenly flex-wrap gap-8">
         {movies.map((movieObj, idx) => {
           return (
-            <div
-              key={idx}
-              className="h-[40vh] w-[200px] bg-center bg-cover rounded-xl hover:scale-110 duration-300 hover:cursor-pointer flex flex-col justify-between item-end"
-              style={{ backgroundImage: `url('https://image.tmdb.org/t/p/w500/${movieObj.poster_path
-              })` }}
-            >
-              <div className="text-white w-full text-center text-xl bg-gray-900/70 p-2 rounded-lg">{movieObj.title}</div>
-            </div>
+            <MovieCard key={idx} movieObject={movieObj}></MovieCard>
           );
         })}
       </div>
