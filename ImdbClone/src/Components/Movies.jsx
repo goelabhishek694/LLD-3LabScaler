@@ -5,9 +5,14 @@ function Movies() {
   const [pageNo, setPageNo] = useState(1);
 
   // go next handler
-  const handleNext = () => {};
+  const handleNext = () => {
+    setPageNo(pageNo+1)
+  };
   // go back handler
-  const handlePrevious = () => {};
+  const handlePrevious = () => {
+    if(pageNo == 1) return;
+    setPageNo(pageNo-1)
+  };
 
   // we will be using this static list of movies then we will replace it with actual  data fetching logic
   const [movies, setMovies] = useState([
@@ -56,11 +61,11 @@ function Movies() {
 
       {/* Pagination */}
       <div className="bg-gray-400 p-4 h-[50px] w-full mt-8 flex justify-center gap-2">
-        <div className="px-8">
+        <div className="px-8" onClick={handlePrevious}>
           <i className="fa-solid fa-arrow-left"></i>
         </div>
         <div>{pageNo}</div>
-        <div className="px-8">
+        <div className="px-8" onClick={handleNext}>
           <i className="fa-solid fa-arrow-right"></i>
         </div>
       </div>
