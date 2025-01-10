@@ -4,7 +4,20 @@ function WatchList() {
 
   useEffect(() => {
     // fetch the watchlist from the localStorage
+    let stringifiedWatchlist = localStorage.getItem("watchList") ;
+    if(!stringifiedWatchlist) return;
+    let watchList = JSON.parse(stringifiedWatchlist);
+    setWatchList(watchList);
   }, []);
+
+  const handleAscendingRatings = () => {
+    watchList.sort((a,b)=>a.vote_average-b.vote_average)
+    //do not alter the original source , i.e watchlist 
+  }
+
+  const handleDescendingRatings = () => {
+    
+  }
 
   return (
     <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
@@ -14,7 +27,9 @@ function WatchList() {
             <th className="px-6 py-4 font-medium text-gray-900">Name</th>
             <th>
               <div className="flex">
+              <i onClick={handleAscendingRatings} class="fa-solid fa-arrow-up"></i>
                 <div>Ratings</div>
+                <i onClick={handleDescendingRatings} class="fa-solid fa-arrow-down"></i>
               </div>
             </th>
             <th>

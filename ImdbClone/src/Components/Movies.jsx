@@ -73,6 +73,13 @@ function Movies() {
     setWatchList(updatedWatchList);
   }
 
+  useEffect(() => {
+    let stringifiedWatchlist = localStorage.getItem("watchList") ;
+    if(!stringifiedWatchlist) return;
+    let watchList = JSON.parse(stringifiedWatchlist);
+    setWatchList(watchList);
+  },[])
+
   return (
     <div>
       <div className="text-2xl font-bold text-center m-5">
