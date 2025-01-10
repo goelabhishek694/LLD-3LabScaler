@@ -61,11 +61,15 @@ function Movies() {
   const addToWatchList = (movieObj) => {
     console.log("adding movie to watchlist", movieObj);
     let updatedWatchList = [ ...watchList, movieObj];
+    localStorage.setItem("watchList",JSON.stringify(updatedWatchList));
     setWatchList(updatedWatchList);
+
   }
 
   const removeFromWatchList = (movieId) => {
+    console.log("removing from watchlist", movieId);
     let updatedWatchList = watchList.filter(movieObj=>movieObj.id!=movieId);
+    localStorage.setItem("watchList",JSON.stringify(updatedWatchList));
     setWatchList(updatedWatchList);
   }
 

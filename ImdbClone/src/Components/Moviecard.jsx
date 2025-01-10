@@ -8,8 +8,10 @@ function MovieCard({
 }) {
   function isPresentInWatchlist() {
     //if movie is present in my watchlist
-    // display cross
-    // else display emoji
+    for(let movieData of watchList){
+      if(movieData.id == movieObject.id) return true; // display cross
+    }
+    return false;// display emoji
   }
 
   return (
@@ -22,8 +24,8 @@ function MovieCard({
       <div className="text-white w-full text-center text-xl p-2 bg-gray-900/70 rounded-lg">
         {movieObject.title}
       </div>
+      
       {/* if this movie is added to watchlist ? X :  😍 */}
-
       {isPresentInWatchlist() == true ? (
         <div
           onClick={() => removeFromWatchList(movieObject.id)}
@@ -36,7 +38,7 @@ function MovieCard({
           onClick={() => addToWatchList(movieObject)}
           className="m-4 pl-1 flex justify-center items-center h-8 w-8 rounded-lg bg-gray-900/60"
         >
-          😍
+          ❤️
         </div>
       )}
     </div>
