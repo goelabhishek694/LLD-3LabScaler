@@ -3,6 +3,7 @@ import MovieCard from "./Moviecard";
 function Movies() {
   // setup basic pagination
   const [pageNo, setPageNo] = useState(1);
+  const [watchList,setWatchList] = useState([]);
 
   // go next handler
   const handleNext = () => {
@@ -56,6 +57,18 @@ function Movies() {
       .catch(err => console.error(err));
   },[pageNo])
 
+
+  const addToWatchList = (movieObj) => {
+    console.log("adding movie to watchlist", movieObj);
+    let updatedWatchList = [ ...watchList, movieObj];
+    setWatchList(updatedWatchList);
+  }
+
+  const removeFromWatchList = (movieId) => {
+    let updatedWatchList = watchList.filter(movieObj=>movieObj.id!=movieId);
+    setWatchList(updatedWatchList);
+  }
+
   return (
     <div>
       <div className="text-2xl font-bold text-center m-5">
@@ -66,7 +79,7 @@ function Movies() {
       <div className="flex justify-evenly flex-wrap gap-8">
         {movies.map((movieObj, idx) => {
           return (
-            <MovieCard key={idx} movieObject={movieObj}></MovieCard>
+            <MovieCard key={idx} movieObject={movieObj} addToWatchList={addToWatchList} removeFromWatchList={removeFromWatchList} watchList={watchList}></MovieCard>
           );
         })}
       </div>

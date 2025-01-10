@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
-function MovieCard({ movieObject }) {
-  const addToWatchList = () => {
-
+function MovieCard({
+  movieObject,
+  addToWatchList,
+  removeFromWatchList,
+  watchList,
+}) {
+  function isPresentInWatchlist() {
+    //if movie is present in my watchlist
+    // display cross
+    // else display emoji
   }
 
-  const removeFromWatchList = () => {
-    
-  }
   return (
     <div
       className="h-[40vh] w-[200px] bg-center bg-cover rounded-xl hover:scale-110 duration-300 hover:cursor-pointer flex flex-col justify-between items-end"
@@ -19,15 +23,22 @@ function MovieCard({ movieObject }) {
         {movieObject.title}
       </div>
       {/* if this movie is added to watchlist ? X :  😍 */}
-    
 
-      
-      <div onClick={addToWatchList} className="m-4 pl-1 flex justify-center items-center h-8 w-8 rounded-lg bg-gray-900/60">
-        😍
-      </div>
-      <div onClick={removeFromWatchList} className="m-4 pl-1 flex justify-center items-center h-8 w-8 rounded-lg bg-gray-900/60">
-        ❌
-      </div>
+      {isPresentInWatchlist() == true ? (
+        <div
+          onClick={() => removeFromWatchList(movieObject.id)}
+          className="m-4 pl-1 flex justify-center items-center h-8 w-8 rounded-lg bg-gray-900/60"
+        >
+          ❌
+        </div>
+      ) : (
+        <div
+          onClick={() => addToWatchList(movieObject)}
+          className="m-4 pl-1 flex justify-center items-center h-8 w-8 rounded-lg bg-gray-900/60"
+        >
+          😍
+        </div>
+      )}
     </div>
   );
 }
