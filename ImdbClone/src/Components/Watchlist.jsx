@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import genreids from "../utility";
 function WatchList() {
   const [watchList, setWatchList] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     // fetch the watchlist from the localStorage
@@ -12,15 +13,31 @@ function WatchList() {
   }, []);
 
   const handleAscendingRatings = () => {
-    watchList.sort((a,b)=>a.vote_average-b.vote_average)
+    let lthSortedRatings = watchList.sort((a,b)=>a.vote_average-b.vote_average);
+    setWatchList([...lthSortedRatings])
     //do not alter the original source , i.e watchlist 
   }
 
   const handleDescendingRatings = () => {
-    
+    let htlSortedRatings = watchList.sort((a,b)=>b.vote_average-a.vote_average);
+    setWatchList([...htlSortedRatings])
+  }
+
+  const handleSearch = () => {
+    setSearch()
   }
 
   return (
+    <>
+    <div>
+      <input 
+        type="text" 
+        placeholder="Search Movies"
+        onChange={handleSearch}
+        value={search}
+        className="bg-gray-200 border border-gray-500 outline-none px-4 h-[3rem] w-[18rem]"
+      />
+    </div>
     <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
       <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
         <thead>
@@ -66,6 +83,7 @@ function WatchList() {
         </tbody>
       </table>
     </div>
+    </>
   );
 }
 
