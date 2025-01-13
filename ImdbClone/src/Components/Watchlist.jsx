@@ -103,6 +103,11 @@ function WatchList() {
                   <div>Genre</div>
                 </div>
               </th>
+              <th>
+                <div className="flex">
+                  <div>Delete</div>
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
@@ -128,6 +133,7 @@ function WatchList() {
                   <td className="pl-6 py-4">{movie.vote_average}</td>
                   <td className="pl-6 py-4">{movie.popularity}</td>
                   <td className="pl-2 py-4">{genreids[movie.genre_ids[0]]}</td>
+                  <td onClick={()=>removeFromWatchList(movie)}className="text-red-500"><i class="fa-solid fa-trash"></i></td>
                 </tr>
               ))}
           </tbody>
