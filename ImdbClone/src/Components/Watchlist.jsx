@@ -23,8 +23,8 @@ function WatchList() {
     setWatchList([...htlSortedRatings])
   }
 
-  const handleSearch = () => {
-    setSearch()
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
   }
 
   return (
@@ -63,7 +63,9 @@ function WatchList() {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-          {watchList.map((movie) => (
+          {watchList
+          .filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()))
+          .map((movie) => (
             <tr className="hover:bg-gray-50" key={movie.id}>
               <td className="flex items-center px-6 py-4 font-normal text-gray-900">
                 <img
