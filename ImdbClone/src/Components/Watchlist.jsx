@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import genreids from "../utility";
 function WatchList() {
   const [watchList, setWatchList] = useState([]);
 
@@ -59,7 +60,7 @@ function WatchList() {
               </td>
               <td className="pl-6 py-4">{movie.vote_average}</td>
               <td className="pl-6 py-4">{movie.popularity}</td>
-              <td className="pl-2 py-4">Action</td>
+              <td className="pl-2 py-4">{genreids[movie.genre_ids[0]]}</td>
             </tr>
           ))}
         </tbody>
