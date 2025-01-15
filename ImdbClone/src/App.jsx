@@ -6,17 +6,19 @@ import Navbar from './Components/Navbar'
 import Watchlist from './Components/Watchlist'
 import Home from './Components/Home'
 import { Route, Routes } from 'react-router-dom'
+import Context from './poc/Context'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path='/watchlist' element = {<Watchlist/>}></Route>
-    </Routes>
+    </Routes> */}
+    <Context/>
     </>
   )
 }
