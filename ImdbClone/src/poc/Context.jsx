@@ -1,68 +1,81 @@
-import React, { createContext, useEffect, useState } from 'react'
-
+import React, { createContext, useContext, useEffect, useState } from "react";
+const nearbyGroceryStore = createContext(); //creates our store.
 function Context() {
-    console.log("Context is rendered");
-    
-    const data = {
-        name: "Ramesh",
-        msg: "hello",
-    }
-    const [user, setUser] = useState(data);
-    const setUserData = ({name,msg}) => {
-        setUser({name,msg});
-    }
+  console.log("Context is rendered");
+
+  const data = {
+    name: "Ramesh",
+    msg: "hello",
+  };
+  const [user, setUser] = useState(data);
+  const setUserData = ({ name, msg }) => {
+    setUser({ name, msg });
+  };
   return (
     <>
-    <h3>Context</h3>
-    <div>⬇️</div>
-    
-    <Grandparent user={user} setUserData={setUserData}></Grandparent>
-    
-    
+      <h3>Context</h3>
+      <div>⬇️</div>
+      <nearbyGroceryStore.Provider value={data}>
+        <Grandparent></Grandparent>
+      <FarAwayRelative></FarAwayRelative>
+      </nearbyGroceryStore.Provider>
     </>
-  )
+  );
 }
 
-function Grandparent({user, setUserData}) {
-    console.log("Grandparent is rendered");
+function FarAwayRelative() {
+    const user = useContext(nearbyGroceryStore);
+    console.log(user);
+    
     return (
-        <>
-        <h3>Grandparent</h3>
+      <>
+        <p>FarAwayRelative</p>
         <div>⬇️</div>
-        <Parent user={user} setUserData={setUserData}></Parent>
-        </>
-  
-    )
+        {/* <p>{user.name}</p>
+        <p>{user.msg}</p> */}
+      </>
+    );
   }
 
-  function Parent({user, setUserData}) {
-    console.log("Parent is rendered");
-    return (
-        <>
-        <h3>Parent</h3>
-        <div>⬇️</div>
-        <Child user={user} setUserData={setUserData}></Child>
-        </>
-  
-    )
-  }
+function Grandparent() {
+  console.log("Grandparent is rendered");
+  return (
+    <>
+      <h3>Grandparent</h3>
+      <div>⬇️</div>
+      <Parent></Parent>
+    </>
+  );
+}
 
-  function Child({user, setUserData}) {
-    console.log("Child is rendered");
-    //   console.log(user);
-    useEffect(()=>{
-        setTimeout(()=>{
-            setUserData({name:"Suresh", msg:"bye"});
-        },3000)
-    },[]);
-    return (
-        <>
-        <p>Child</p>
-        <div>⬇️</div>
-        <p>{user.name}</p>
-        <p>{user.msg}</p>
-        </>
-    )
-  }
+function Parent() {
+  console.log("Parent is rendered");
+  return (
+    <>
+      <h3>Parent</h3>
+      <div>⬇️</div>
+      <Child></Child>
+    </>
+  );
+}
 
-export default Context
+function Child() {
+  console.log("Child is rendered");
+  const user = useContext(nearbyGroceryStore);
+  //   console.log(user);
+  // useEffect(()=>{
+  //     setTimeout(()=>{
+  //         setUserData({name:"Suresh", msg:"bye"});
+  //     },3000)
+  // },[]);
+  return (
+    <>
+      <p>Child</p>
+      <div>⬇️</div>
+      <p>{user.name}</p>
+      <p>{user.msg}</p>
+    </>
+  );
+}
+
+export default Context;
