@@ -8,21 +8,23 @@ import Home from './Components/Home'
 import { Route, Routes } from 'react-router-dom'
 import Context from './poc/Context'
 import ThemeManager from "./poc/themes/ThemeManager";
-
+import {Provider} from "react-redux"
+import store from './redux/store'
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-    {/* <Navbar/>
+    <Provider store={store}>
+    <Navbar/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path='/watchlist' element = {<Watchlist/>}></Route>
-    </Routes> */}
+    </Routes>
+    </Provider>
     
     {/* poc  */}
     {/* <Context/> */}
-    <ThemeManager></ThemeManager>
+    {/* <ThemeManager></ThemeManager> */}
     </>
   )
 }

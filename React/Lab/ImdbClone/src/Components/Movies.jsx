@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "./Moviecard";
+import { useSelector, useDispatch } from "react-redux";
+import paginationSlice from "../redux/paginationSlice";
+const paginationActions = paginationSlice.actions;
 function Movies() {
   // setup basic pagination
-  const [pageNo, setPageNo] = useState(1);
+  const {pageNo} = useSelector((state)=>{return state.paginationState})
   const [watchList,setWatchList] = useState([]);
-
+  const dispatch = useDispatch();
   // go next handler
   const handleNext = () => {
-    setPageNo(pageNo+1)
+    dispatch(paginationActions.handleNext())
   };
   // go back handler
   const handlePrevious = () => {
-    if(pageNo == 1) return;
-    setPageNo(pageNo-1)
+    dispatch(paginationActions.handlePrevious())
   };
 
   // we will be using this static list of movies then we will replace it with actual  data fetching logic
