@@ -3,9 +3,11 @@ import MovieCard from "./Moviecard";
 import { useSelector, useDispatch } from "react-redux";
 import paginationSlice from "../redux/paginationSlice";
 const paginationActions = paginationSlice.actions;
+import fetchMoviesMiddleware from "../redux/moviesMiddleware";
 function Movies() {
   // setup basic pagination
   const {pageNo} = useSelector((state)=>{return state.paginationState})
+  const {movies} = useSelector((state) => {return state.moviesState})
   const [watchList,setWatchList] = useState([]);
   const dispatch = useDispatch();
   // go next handler
@@ -17,46 +19,8 @@ function Movies() {
     dispatch(paginationActions.handlePrevious())
   };
 
-  // we will be using this static list of movies then we will replace it with actual  data fetching logic
-  const [movies, setMovies] = useState([
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 1",
-    },
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 2",
-    },
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 3",
-    },
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 4",
-    },
-    {
-      url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
-      title: "Movie 5",
-    },
-  ]);
-
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`
-      }
-    };
-    
-    fetch(`https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=${pageNo}`, options)
-      .then(res => res.json())
-      .then(res => {
-        setMovies(res.results)
-        console.log(res)
-  })
-      .catch(err => console.error(err));
+    dispatch(fetchMoviesMiddleware(pageNo))
   },[pageNo])
 
 
