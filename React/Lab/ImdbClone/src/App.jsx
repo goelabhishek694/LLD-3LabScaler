@@ -15,7 +15,7 @@ function App() {
     <Navbar/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
-      <Route path='/watchlist' element = {<Watchlist/>}></Route>
+      <Route path='/watchlist' element = {<WatchList/>}></Route>
     </Routes>
     </Provider>
     
