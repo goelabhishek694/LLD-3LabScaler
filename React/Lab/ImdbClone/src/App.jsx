@@ -1,6 +1,6 @@
 import './App.css'
 import Navbar from './Components/Navbar.jsx'
-import Watchlist from './Components/Watchlist.jsx'
+import WatchList from './Components/WatchList.jsx'
 import Home from './Components/Home'
 import { Route, Routes } from 'react-router-dom'
 // import Context from './poc/Context'
