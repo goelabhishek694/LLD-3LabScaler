@@ -26,3 +26,17 @@ test("increment count", () => {
     expect(countVal).toBeInTheDocument();
 
 })
+
+test("decrement count", () => {
+    //render and store the rendered ele to be checked
+    render(<Counter></Counter>)
+    const minusText = screen.getByText("-");
+    fireEvent.click(minusText)
+    fireEvent.click(minusText)
+    fireEvent.click(minusText)
+    const countVal = screen.getByText(7);
+
+    //assertion
+    expect(countVal).toBeInTheDocument();
+
+})
