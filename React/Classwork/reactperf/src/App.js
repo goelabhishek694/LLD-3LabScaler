@@ -34,6 +34,12 @@ function App() {
   //   import('./Components/Contact').then((module) => setContact(()=>module.default))
   // }
 
+  // const fallBackHome = () => {
+  //   return (
+  //     <div></div>
+  //   )
+  // }
+
   return (
     <Router>
       <div>
