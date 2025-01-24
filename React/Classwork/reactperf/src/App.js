@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import { Link } from "react-router-dom";
 import { useEffect, useState, Suspense, lazy } from "react";
+import UseMemo from "./Components/UseMemo";
+import UseCallbacks from "./Components/UseCallbacks";
 // import Home from './Components/Home';
 // import About from './Components/About';
 // import Contact from './Components/Contact';
@@ -41,46 +43,49 @@ function App() {
   // }
 
   return (
-    <Router>
-      <div>
-        {/* <Navbar></Navbar> */}
-        <nav>
-          <ul>
-            {/* <li><Link to="/" onClick={loadHomePage}>Home</Link></li>
-            <li><Link to="/contact" onClick={loadContactPage}>Contact</Link></li>
-            <li><Link to="/about" onClick={loadAboutPage}>About</Link></li> */}
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-          </ul>
-        </nav>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route
-              path="/"
-              // element={Home ? <Home /> : <div>Loading...</div>}
-              element={<Home />}
-            ></Route>
-            <Route
-              path="/about"
-              // element={About ? <About /> : <div>Loading...</div>}
-              element={<About />}
-            ></Route>
-            <Route
-              path="/contact"
-              // element={Contact ? <Contact /> : <div>Loading...</div>}
-              element={<Contact />}
-            ></Route>
-          </Routes>
-        </Suspense>
-      </div>
-    </Router>
+    // <Router>
+    //   <div>
+    //     {/* <Navbar></Navbar> */}
+    //     <nav>
+    //       <ul>
+    //         {/* <li><Link to="/" onClick={loadHomePage}>Home</Link></li>
+    //         <li><Link to="/contact" onClick={loadContactPage}>Contact</Link></li>
+    //         <li><Link to="/about" onClick={loadAboutPage}>About</Link></li> */}
+    //         <li>
+    //           <Link to="/">Home</Link>
+    //         </li>
+    //         <li>
+    //           <Link to="/contact">Contact</Link>
+    //         </li>
+    //         <li>
+    //           <Link to="/about">About</Link>
+    //         </li>
+    //       </ul>
+    //     </nav>
+    //     <Suspense fallback={<div>Loading...</div>}>
+    //       <Routes>
+    //         <Route
+    //           path="/"
+    //           // element={Home ? <Home /> : <div>Loading...</div>}
+    //           element={<Home />}
+    //         ></Route>
+    //         <Route
+    //           path="/about"
+    //           // element={About ? <About /> : <div>Loading...</div>}
+    //           element={<About />}
+    //         ></Route>
+    //         <Route
+    //           path="/contact"
+    //           // element={Contact ? <Contact /> : <div>Loading...</div>}
+    //           element={<Contact />}
+    //         ></Route>
+    //       </Routes>
+    //     </Suspense>
+    //   </div>
+    // </Router>
+
+    // <UseMemo/>
+    <UseCallbacks/>
   );
 }
 
