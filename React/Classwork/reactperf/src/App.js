@@ -5,9 +5,7 @@ import Navbar from "./Components/Navbar";
 import { Link } from "react-router-dom";
 import { useEffect, useState, Suspense, lazy } from "react";
 import UseMemo from "./Components/UseMemo";
-// import UseCallbacks from "./Components/UseCallbacks";
-import UseRefHook from "./Components/UseRefHook";
-import Stopwatch from "./Components/Stopwatch";
+import UseCallbacks from "./Components/UseCallbacks";
 // import Home from './Components/Home';
 // import About from './Components/About';
 // import Contact from './Components/Contact';
@@ -87,9 +85,7 @@ function App() {
     // </Router>
 
     // <UseMemo/>
-    // <UseCallbacks/>
-    // <UseRefHook/>
-    <Stopwatch/>
+    <UseCallbacks/>
   );
 }
 
