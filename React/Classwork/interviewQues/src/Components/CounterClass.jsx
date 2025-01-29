@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 export default class CounterClass extends Component {
     constructor(props){
         //this line calls the constructor of the parent class, enbaling the component to use this to refer itself. 
+        // used to call and access props of the parents 
         super(props)
         //stores all the states
         this.state = {
