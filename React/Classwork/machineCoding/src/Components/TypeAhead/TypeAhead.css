@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+}
+
+input[type="text"]{
+    width: 300px;
+    height: 4rem;
+    font-size: 32px;
+}
+.suggestions{
+    width: 300px;
+    /* background-color: aliceblue; */
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.suggestions p {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions p:hover{
+    background-color: rgb(197, 118, 14);
+}
+
